@@ -10,6 +10,11 @@ A [MapLibre GL JS](https://maplibre.org/) custom layer that shows crowd-sourced 
 
 Zoom levels below 11 show clusters (spot counts); from zoom 11 individual spots are shown, colored by speed. The switch point is fixed.
 
+## Example
+
+- [Live demo](https://pantredeveloper.github.io/wifi-speed-customlayer/script/wifi-speed-customlayer-example.html) (GitHub Pages) – zoom in to level 11 or higher, click the map to place a pin, and try the language and button-position switches.
+- [Source of the demo](https://github.com/pantredeveloper/wifi-speed-customlayer/blob/main/script/wifi-speed-customlayer-example.html)
+
 ## Install
 
 ### CDN (unpkg)
@@ -52,7 +57,7 @@ map.on('load', () => {
 });
 ```
 
-Add the layer **after the map's `load` event**. A full demo is in [`script/wifi-speed-customlayer-example.html`](script/wifi-speed-customlayer-example.html).
+Add the layer **after the map's `load` event**. A working demo is linked in [Example](#example).
 
 Cluster counts use the `glyphs` of your style. The font stack of an existing symbol layer in the style is reused; if the style has no `glyphs`, only the cluster circles are drawn.
 
