@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wifi-speed-customlayer example</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<style>
+  html, body { height: 100%; margin: 0; }
+  #map { position: absolute; inset: 0; }
+  #panel {
+    position: absolute; z-index: 1; left: 10px; top: 10px;
+    background: #fff; border-radius: 4px; padding: 8px 10px;
+    box-shadow: 0 0 0 2px rgba(0,0,0,.1); font: 13px/1.4 system-ui, sans-serif;
+  }
+  #panel label { display: block; margin: 2px 0; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="panel">
+  <label>Language
+    <select id="lang"><option>auto</option><option>en</option><option>ja</option></select>
+  </label>
+  <label>Button position
+    <select id="pos">
+      <option>top-right</option><option>top-left</option>
+      <option>bottom-right</option><option>bottom-left</option>
+    </select>
+  </label>
+  <div>Zoom in to 11+ and click the map to place a pin.</div>
+</div>
+
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<!-- Local build (this repo): -->
+<script src="../dist/wifi-speed-customlayer.js"></script>
+<!-- CDN build: <script src="https://unpkg.com/wifi-speed-customlayer"></script> -->
+<script>
+  const map = new maplibregl.Map({
+    container: 'map',
+    style: 'https://demotiles.maplibre.org/style.json', // any style with "glyphs" shows cluster counts
+    center: [139.767, 35.681],
+    zoom: 5
+  });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+  const langEl = document.getElementById('lang');
+  const posEl = document.getElementById('pos');
+
+  function addWifiLayer() {
+    if (map.getLayer('wifi-speed')) map.removeLayer('wifi-speed');
+    map.addLayer(new WifiSpeedLayer({
+      id: 'wifi-speed',
+      language: langEl.value,
+      controlPosition: posEl.value
+    }));
+  }
+
+  map.on('load', addWifiLayer);
+  langEl.addEventListener('change', addWifiLayer);
+  posEl.addEventListener('change', addWifiLayer);
+</script>
+</body>
+</html>

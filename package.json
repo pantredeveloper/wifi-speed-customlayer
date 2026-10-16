@@ -1,0 +1,54 @@
+{
+  "name": "wifi-speed-customlayer",
+  "version": "1.0.0",
+  "description": "A MapLibre GL JS custom layer that shows crowd-sourced Wi-Fi speed spots from wifi.pancake-trail.site, with register/delete hand-off buttons. No API key required.",
+  "main": "dist/wifi-speed-customlayer.js",
+  "unpkg": "dist/wifi-speed-customlayer.min.js",
+  "jsdelivr": "dist/wifi-speed-customlayer.min.js",
+  "exports": {
+    ".": "./dist/wifi-speed-customlayer.js",
+    "./min": "./dist/wifi-speed-customlayer.min.js",
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "script",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "terser dist/wifi-speed-customlayer.js --compress passes=2 --mangle --comments \"/^!/\" -o dist/wifi-speed-customlayer.min.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "maplibre",
+    "maplibre-gl",
+    "maplibre-gl-js",
+    "custom-layer",
+    "wifi",
+    "wifi-speed",
+    "map"
+  ],
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_GITHUB_NAME/wifi-speed-customlayer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_GITHUB_NAME/wifi-speed-customlayer/issues"
+  },
+  "homepage": "https://github.com/YOUR_GITHUB_NAME/wifi-speed-customlayer#readme",
+  "peerDependencies": {
+    "maplibre-gl": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "maplibre-gl": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "terser": "^5.31.0"
+  }
+}
