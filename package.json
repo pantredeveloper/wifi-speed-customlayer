@@ -34,12 +34,12 @@
   "license": "CC0-1.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YOUR_GITHUB_NAME/wifi-speed-customlayer.git"
+    "url": "git+https://github.com/pantredeveloper/wifi-speed-customlayer.git"
   },
   "bugs": {
-    "url": "https://github.com/YOUR_GITHUB_NAME/wifi-speed-customlayer/issues"
+    "url": "https://github.com/pantredeveloper/wifi-speed-customlayer/issues"
   },
-  "homepage": "https://github.com/YOUR_GITHUB_NAME/wifi-speed-customlayer#readme",
+  "homepage": "https://github.com/pantredeveloper/wifi-speed-customlayer#readme",
   "peerDependencies": {
     "maplibre-gl": ">=3.0.0"
   },
