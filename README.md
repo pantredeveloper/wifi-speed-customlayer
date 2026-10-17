@@ -22,10 +22,10 @@ Zoom levels below 11 show clusters (spot counts); from zoom 11 individual spots 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
-<script src="https://unpkg.com/wifi-speed-customlayer@1.0.0/dist/wifi-speed-customlayer.min.js"></script>
+<script src="https://unpkg.com/wifi-speed-customlayer@1.0.1/dist/wifi-speed-customlayer.min.js"></script>
 ```
 
-Pin an exact version in production (`@1.0.0`). `https://unpkg.com/wifi-speed-customlayer` always resolves to the latest minified build.
+Pin an exact version in production (`@1.0.1`). `https://unpkg.com/wifi-speed-customlayer` always resolves to the latest minified build.
 
 ### npm
 
