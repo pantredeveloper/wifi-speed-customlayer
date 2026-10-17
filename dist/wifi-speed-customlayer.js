@@ -64,6 +64,13 @@
     const wrapLon = lon => ((lon + 180) % 360 + 360) % 360 - 180;
     const abortError = () => { const e = new Error('Aborted'); e.name = 'AbortError'; return e; };
 
+    // The server stores descriptions with esc_attr (&amp; &quot; &#039; ...). We render with textContent only,
+    // so decode the common entities once, here, as plain text (never as HTML).
+    const ENTITIES = { '&#039;': "'", '&#39;': "'", '&apos;': "'", '&quot;': '"', '&lt;': '<', '&gt;': '>', '&amp;': '&' };
+    function decodeEntities(s) {
+        return String(s).replace(/&(?:#0?39|apos|quot|lt|gt|amp);/g, m => ENTITIES[m]);
+    }
+
     function resolveLang(v) {
         if (v === 'en' || v === 'ja') return v;
         const l = (navigator.languages && navigator.languages[0]) || navigator.language || '';
@@ -102,8 +109,8 @@
             const speed = Number(p.wifi_speed);
             const id = String(p.id == null ? '' : p.id);
             if (!Number.isFinite(speed) || !/^[A-Za-z0-9_-]{1,64}$/.test(id)) continue;
-            const description = String(p.description == null ? '' : p.description)
-                .replace(/\\?&#0?39;/g, "'").slice(0, 200);
+            const description = decodeEntities(String(p.description == null ? '' : p.description)
+                .replace(/\\?&#0?39;/g, "'")).slice(0, 200);
             out.push({
                 type: 'Feature',
                 geometry: { type: 'Point', coordinates: [lng, lat] },
@@ -649,7 +656,7 @@
         }
     }
 
-    WifiSpeedLayer.version = '1.0.0';
+    WifiSpeedLayer.version = '1.0.1';
     WifiSpeedLayer.WifiSpeedLayer = WifiSpeedLayer;
     WifiSpeedLayer.default = WifiSpeedLayer;
     return WifiSpeedLayer;
