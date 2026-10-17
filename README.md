@@ -22,10 +22,10 @@ Zoom levels below 11 show clusters (spot counts); from zoom 11 individual spots 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
-<script src="https://unpkg.com/wifi-speed-customlayer@1.0.1/dist/wifi-speed-customlayer.min.js"></script>
+<script src="https://unpkg.com/wifi-speed-customlayer@1.0.0/dist/wifi-speed-customlayer.min.js"></script>
 ```
 
-Pin an exact version in production (`@1.0.1`). `https://unpkg.com/wifi-speed-customlayer` always resolves to the latest minified build.
+Pin an exact version in production (`@1.0.0`). `https://unpkg.com/wifi-speed-customlayer` always resolves to the latest minified build.
 
 ### npm
 
@@ -65,17 +65,17 @@ Cluster counts use the `glyphs` of your style. The font stack of an existing sym
 
 | Option | Default | Description |
 |---|---|---|
-| `id` | `'wifi-speed'` | Layer id (letters, digits, `_`, `-`). Internal layers/sources are prefixed with it. |
+| `id` | `'wifi-speed'` | Layer id: starts with a letter, then letters, digits, `_`, `-` (max 64 chars); anything else falls back to the default. Internal layers/sources are prefixed with it. |
 | `controlPosition` | `'top-right'` | Where the Register / Delete buttons go. |
 | `language` | `'auto'` | `'auto'` follows `navigator.languages`. Also sent to the website as `ptw_lang`. |
-| `showRegister` | `true` | Show the Register button when a pin is placed. |
+| `showRegister` | `true` | `false` hides the Register button **and** stops placing the green pin when the map is clicked. |
 | `showDelete` | `true` | Show the Delete button when a spot is selected. |
 | `clusterRadius` | `60` | Cluster radius in px (10–200). |
 | `speedRange` | `[0, 50]` | Mbps range of the color ramp. |
 | `colors` | `['#0000FF', '#FF0000']` | `[slow, fast]` colors. |
-| `refreshInterval` | `0` | Auto-refresh in ms (`0` = off, minimum `30000`). |
+| `refreshInterval` | `0` | Auto-refresh in ms (`0` = off; any other value is raised to at least `30000`). |
 | `refreshOnFocus` | `true` | Reload when the tab becomes visible again (e.g. after registering). |
-| `beforeId` | – | Insert the internal layers below this layer. |
+| `beforeId` | – | Insert the internal layers below this layer. The layer must already exist when this layer is added; otherwise the internal layers go on top. |
 | `maplibregl` | global | The MapLibre namespace, if not global. |
 | `meshBaseUrl`, `clusterUrl` | official data | Data sources. `https:` only (`http:` allowed for localhost). |
 

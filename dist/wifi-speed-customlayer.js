@@ -237,7 +237,7 @@
          * @param {string}  [options.id='wifi-speed']
          * @param {'top-left'|'top-right'|'bottom-left'|'bottom-right'} [options.controlPosition='top-right']
          * @param {'auto'|'en'|'ja'} [options.language='auto']
-         * @param {boolean} [options.showRegister=true]
+         * @param {boolean} [options.showRegister=true]         false: no Register button and no green pin on empty-map clicks
          * @param {boolean} [options.showDelete=true]
          * @param {number}  [options.clusterRadius=60]
          * @param {number[]} [options.speedRange=[0, 50]]        Mbps range for the color ramp
@@ -576,6 +576,8 @@
         }
 
         _placePick(lngLat) {
+            // Register button disabled: no pin. Clicking empty map still clears the current selection / popup.
+            if (!this._opt.showRegister) { this.clearSelection(); return; }
             const lat = lngLat.lat, lng = wrapLon(lngLat.lng);
             if (!isNum(lat) || !isNum(lng)) return;
             this._closePopup();
@@ -656,7 +658,7 @@
         }
     }
 
-    WifiSpeedLayer.version = '1.0.1';
+    WifiSpeedLayer.version = '1.0.2';
     WifiSpeedLayer.WifiSpeedLayer = WifiSpeedLayer;
     WifiSpeedLayer.default = WifiSpeedLayer;
     return WifiSpeedLayer;
