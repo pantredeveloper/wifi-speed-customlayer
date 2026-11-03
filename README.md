@@ -22,10 +22,10 @@ Zoom levels below 11 show clusters (spot counts); from zoom 11 individual spots 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
-<script src="https://unpkg.com/wifi-speed-customlayer@1.0.2/dist/wifi-speed-customlayer.min.js"></script>
+<script src="https://unpkg.com/wifi-speed-customlayer@1.1.0/dist/wifi-speed-customlayer.min.js"></script>
 ```
 
-Pin an exact version in production (`@1.0.2`). `https://unpkg.com/wifi-speed-customlayer` always resolves to the latest minified build.
+Pin an exact version in production (`@1.1.0`). `https://unpkg.com/wifi-speed-customlayer` always resolves to the latest minified build.
 
 ### npm
 
@@ -71,7 +71,7 @@ Cluster counts use the `glyphs` of your style. The font stack of an existing sym
 | `showRegister` | `true` | `false` hides the Register button **and** stops placing the green pin when the map is clicked. |
 | `showDelete` | `true` | Show the Delete button when a spot is selected. |
 | `clusterRadius` | `60` | Cluster radius in px (10–200). |
-| `speedRange` | `[0, 50]` | Mbps range of the color ramp. |
+| `speedRange` | `[0, 100]` | Mbps range of the color ramp (0 Mbps = slow color, 100 Mbps = fast color). |
 | `colors` | `['#0000FF', '#FF0000']` | `[slow, fast]` colors. |
 | `refreshInterval` | `0` | Auto-refresh in ms (`0` = off; any other value is raised to at least `30000`). |
 | `refreshOnFocus` | `true` | Reload when the tab becomes visible again (e.g. after registering). |

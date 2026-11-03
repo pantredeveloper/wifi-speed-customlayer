@@ -28,9 +28,9 @@
     /* ---------- constants (fixed on purpose) ---------- */
     const SITE_ORIGIN = 'https://wifi.pancake-trail.site';
     const SITE_URL = SITE_ORIGIN + '/';
-    const THEME_BASE = SITE_ORIGIN + '/wp-content/themes/pancake-trail/';
-    const DEFAULT_MESH_BASE = THEME_BASE + 'pancake-trail_wifijson/';
-    const DEFAULT_CLUSTER_URL = THEME_BASE + 'pancake-trail_json/wifi_cluster_latitude_and_longitude.json';
+    const DATA_BASE = SITE_ORIGIN + '/map-data/';
+    const DEFAULT_MESH_BASE = DATA_BASE + 'wifi/';                                        // wifi_<lat>_<lon>.json
+    const DEFAULT_CLUSTER_URL = DATA_BASE + 'wifi_cluster_latitude_and_longitude.json';
     const SWITCH_ZOOM = 11;            // cluster (< 11) <-> mesh points (>= 11)
     const PARAM_PREFIX = 'ptw_';       // prefix to avoid clashing with WordPress query vars
     const MAX_BYTES = 2 * 1024 * 1024; // max JSON text size per request
@@ -240,7 +240,7 @@
          * @param {boolean} [options.showRegister=true]         false: no Register button and no green pin on empty-map clicks
          * @param {boolean} [options.showDelete=true]
          * @param {number}  [options.clusterRadius=60]
-         * @param {number[]} [options.speedRange=[0, 50]]        Mbps range for the color ramp
+         * @param {number[]} [options.speedRange=[0, 100]]       Mbps range for the color ramp (0 = slow color, 100 = fast color)
          * @param {string[]} [options.colors=['#0000FF','#FF0000']] [slow, fast]
          * @param {number}  [options.refreshInterval=0]          ms, 0 = off, min 30000
          * @param {boolean} [options.refreshOnFocus=true]        reload when the tab becomes visible again
@@ -251,9 +251,9 @@
          */
         constructor(options) {
             const o = options || {};
-            const range = Array.isArray(o.speedRange) ? o.speedRange : [0, 50];
+            const range = Array.isArray(o.speedRange) ? o.speedRange : [0, 100];
             const min = clampNum(range[0], -1e6, 1e6, 0);
-            let max = clampNum(range[1], -1e6, 1e6, 50);
+            let max = clampNum(range[1], -1e6, 1e6, 100);
             if (max <= min) max = min + 1;
             const colors = Array.isArray(o.colors) && o.colors.length >= 2 ? o.colors : ['#0000FF', '#FF0000'];
 
@@ -658,7 +658,7 @@
         }
     }
 
-    WifiSpeedLayer.version = '1.0.2';
+    WifiSpeedLayer.version = '1.1.0';
     WifiSpeedLayer.WifiSpeedLayer = WifiSpeedLayer;
     WifiSpeedLayer.default = WifiSpeedLayer;
     return WifiSpeedLayer;
